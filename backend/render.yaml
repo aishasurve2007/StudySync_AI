@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: studysync-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    # Run migrations, then start the COMBINED app (HTTP + WebSockets).
+    startCommand: alembic upgrade head && uvicorn app.main:socket_app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: JWT_SECRET
+        generateValue: true        # Render generates a strong secret
+      - key: AI_PROVIDER
+        value: openai
+      - key: DATABASE_URL
+        sync: false                # set in dashboard (your Neon URL)
+      - key: OPENAI_API_KEY
+        sync: false                # set in dashboard
+      - key: CORS_ORIGINS
+        sync: false                # set after the frontend is deployed

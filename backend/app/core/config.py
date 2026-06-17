@@ -30,6 +30,9 @@ class Settings(BaseSettings):
     # CORS
     CORS_ORIGINS: str = "http://localhost:5173,http://localhost:3000"
 
+    # Redis (Phase 2: socket presence/pub-sub). Empty => in-memory single instance.
+    REDIS_URL: str | None = None
+
     @property
     def cors_origins_list(self) -> list[str]:
         return [o.strip() for o in self.CORS_ORIGINS.split(",") if o.strip()]

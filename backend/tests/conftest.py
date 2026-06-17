@@ -14,6 +14,12 @@ import os
 
 os.environ["DATABASE_URL"] = "sqlite://"
 os.environ["JWT_SECRET"] = "test-secret-not-for-production"
+# Force the no-AI provider so tests are hermetic: no real OpenAI/Gemini calls,
+# no network, no cost, and deterministic ("fallback") results regardless of the
+# developer's local .env.
+os.environ["AI_PROVIDER"] = "none"
+os.environ.pop("OPENAI_API_KEY", None)
+os.environ.pop("GEMINI_API_KEY", None)
 
 import pytest
 from fastapi.testclient import TestClient
@@ -24,6 +30,8 @@ from sqlalchemy.pool import StaticPool
 import app.models  # noqa: F401 -- registers all models on Base.metadata
 from app.core.database import Base, get_db
 from app.main import app
+from app.services.ai.factory import get_ai_provider
+from app.services.ai.providers import NullProvider
 
 # A canonical valid profile payload tests can copy and tweak.
 VALID_PROFILE = {
@@ -61,6 +69,9 @@ def client():
             db.close()
 
     app.dependency_overrides[get_db] = override_get_db
+    # Belt-and-suspenders: even if a real provider is configured, force NullProvider
+    # in tests so no endpoint can make a real AI call.
+    app.dependency_overrides[get_ai_provider] = lambda: NullProvider()
     with TestClient(app) as c:
         yield c
     app.dependency_overrides.clear()
