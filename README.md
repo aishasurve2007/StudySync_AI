@@ -19,7 +19,11 @@ and an LLM layer designed with explicit guardrails rather than raw prompt calls.
 ![Dashboard](docs/dashboard.png)
 ![Study partners](docs/matching.png)
 -->
+## Screenshots
 
+| Study partners | AI personality |
+|---|---|
+| ![Matching](docs/matching.png) | ![Personality](docs/personality.png) |
 ## Why this project is interesting
 
 - **A grounded LLM layer, not a thin wrapper.** The AI features are designed so
