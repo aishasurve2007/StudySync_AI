@@ -21,9 +21,10 @@ and an LLM layer designed with explicit guardrails rather than raw prompt calls.
 -->
 ## Screenshots
 
-| Study partners | AI personality |
-|---|---|
-| ![Matching](docs/matching.png) | ![Personality](docs/personality.png) |
+|Dashboard | Study partners | AI Tasks |
+|---|---|---|
+| ![Dashboard](docs/dashboard.png) || ![Prtner](docs/partner.png) | ![Tasks](docs/tasks.png) |
+
 ## Why this project is interesting
 
 - **A grounded LLM layer, not a thin wrapper.** The AI features are designed so
