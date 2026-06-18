@@ -21,7 +21,7 @@ and an LLM layer designed with explicit guardrails rather than raw prompt calls.
 -->
 ## Screenshots
 
-|Dashboard | Study partners | s
+|Dashboard | Study partners |
 |---|---|
 | ![Dashboard](docs/dashboard.png) | ![Partner](docs/partner.png) |
 
