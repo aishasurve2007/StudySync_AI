@@ -21,9 +21,9 @@ and an LLM layer designed with explicit guardrails rather than raw prompt calls.
 -->
 ## Screenshots
 
-|Dashboard | Study partners | AI Tasks |
-|---|---|---|
-| ![Dashboard](docs/dashboard.png) || ![Prtner](docs/partner.png) | ![Tasks](docs/tasks.png) |
+|Dashboard | Study partners | s
+|---|---|
+| ![Dashboard](docs/dashboard.png) | ![Partner](docs/partner.png) |
 
 ## Why this project is interesting
 
